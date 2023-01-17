@@ -1,19 +1,28 @@
 import Layout from '@/components/Layouts/Layout'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { GetStaticProps, NextPage } from 'next'
 import { GetStaticPaths } from 'next'
 import pokeApi from '../../api/pokeApi'
 import { PokemonFull } from '../../interfaces/pokemon-full'
 import { Button, Card, Container, Grid, Text, Image } from '@nextui-org/react'
+import { localFavorites } from '@/utils'
 
 interface Props {
   pokemon: PokemonFull
 }
 const PokemonPage: NextPage<Props> = ({ pokemon }) => {
-  const router = useRouter()
+  const [isInFavorites, setIsInFavorites] = useState(false)
+  const onToggleFavorite = () => {
+    localFavorites.toggleFavorite(pokemon.id)
+    setIsInFavorites(!isInFavorites)
+  }
+  useEffect(() => {
+    setIsInFavorites(localFavorites.isFavorite(pokemon.id))
+  }, [pokemon.id])
+
   return (
-    <Layout>
+    <Layout title={pokemon.name}>
       <Grid.Container css={{ marginTop: '5px' }} gap={2}>
         <Grid xs={12} sm={2}>
           <Card isHoverable>
@@ -33,7 +42,9 @@ const PokemonPage: NextPage<Props> = ({ pokemon }) => {
               <Text h3 transform='capitalize'>
                 {pokemon.name}
               </Text>
-              <Button>Add fav</Button>
+              <Button onPress={onToggleFavorite} ghost={!isInFavorites}>
+                {!isInFavorites ? ' Guardar fav' : 'Quitar fav'}
+              </Button>
             </Card.Header>
             <Card.Body>
               <Text h6 size={30}>
