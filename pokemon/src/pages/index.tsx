@@ -7,37 +7,17 @@ import { NextPage } from 'next'
 import { GetStaticProps } from 'next'
 import pokeApi from '../api/pokeApi'
 import { PokemonItem, PokemonListResponse } from '../interfaces/pokemon-list'
+import PokemonCard from '@/components/pokemon/PokemonCard'
 
 interface HomeProps {
   pokemons: PokemonItem[]
 }
 const Home: NextPage<HomeProps> = ({ pokemons }) => {
-  console.log(pokemons)
   return (
     <Layout title='Lista de Pokemon'>
       <Grid.Container gap={2} justify='flex-start'>
         {pokemons.map((pokemon) => {
-          return (
-            <Grid xs={6} sm={3} md={2} xl={1} key={pokemon.id}>
-              <Card isHoverable>
-                <Card.Body css={{ padding: 1 }}>
-                  <Card.Image
-                    src={pokemon.img}
-                    width='100%'
-                    height={150}
-                  ></Card.Image>
-                </Card.Body>
-                <Card.Footer>
-                  <Col>
-                    <Row justify='space-between'>
-                      <Text transform='capitalize'>{pokemon.name}</Text>
-                      <Text>#{pokemon.id}</Text>
-                    </Row>
-                  </Col>
-                </Card.Footer>
-              </Card>
-            </Grid>
-          )
+          return <PokemonCard pokemon={pokemon} key={pokemon.id}></PokemonCard>
         })}
       </Grid.Container>
     </Layout>
