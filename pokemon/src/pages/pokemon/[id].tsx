@@ -9,6 +9,7 @@ import { Button, Card, Container, Grid, Text, Image } from '@nextui-org/react'
 import { localFavorites } from '@/utils'
 import confetti from 'canvas-confetti'
 import { getPokemonInfo } from '@/utils/getPokemonInfo'
+import { redirect } from 'next/dist/server/api-utils'
 interface Props {
   pokemon: PokemonFull
 }
@@ -106,16 +107,25 @@ export const getStaticPaths: GetStaticPaths = async (ctx) => {
 
   return {
     paths: paths,
-    fallback: false,
+    fallback: 'blocking',
   }
 }
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { id } = params as { id: string }
   const pokemon = await getPokemonInfo(id)
+  if (!pokemon) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    }
+  }
   return {
     props: {
       pokemon,
     },
+    revalidate: 86400,
   }
 }
 
