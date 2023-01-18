@@ -15,4 +15,11 @@ const isFavorite = (id: number) => {
   return favorite.includes(id)
 }
 
-export default { toggleFavorite, isFavorite }
+const getFavoritePokemons = (): number[] => {
+  const pokemons: number[] = JSON.parse(
+    localStorage.getItem('favorite') || '[]'
+  )
+  return pokemons
+}
+
+export default { toggleFavorite, isFavorite, getFavoritePokemons }
