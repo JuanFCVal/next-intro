@@ -6,3 +6,4 @@ export interface ContextProps {
   closeSidebar: () => void
 }
 export const UIContext = createContext<ContextProps>({} as ContextProps)
+  
