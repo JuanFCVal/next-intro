@@ -11,6 +11,7 @@ import Counter from '@/components/demo/Counter'
 import Usuario from '@/components/demo/Usuario'
 import { Spacer, Text } from '@nextui-org/react'
 import { TimerPadre } from '@/components/demo/timerPadre'
+import CounterReducer from '@/components/demo/CounterReducer'
 export default function DemoPage() {
   const [num1, setNum1] = useState(0)
   const [num2, setNum2] = useState(0)
@@ -93,6 +94,8 @@ export default function DemoPage() {
       <Usuario></Usuario>
       <Text h2>useEFfect - useRef</Text>
       <TimerPadre></TimerPadre>
+      <Text h2>Use reducer </Text>
+      <CounterReducer></CounterReducer>
     </div>
   )
 }
