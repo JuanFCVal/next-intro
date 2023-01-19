@@ -9,7 +9,8 @@ import {
 } from '../../utils/getPokemonInfo'
 import Counter from '@/components/demo/Counter'
 import Usuario from '@/components/demo/Usuario'
-import { Spacer } from '@nextui-org/react'
+import { Spacer, Text } from '@nextui-org/react'
+import { TimerPadre } from '@/components/demo/timerPadre'
 export default function DemoPage() {
   const [num1, setNum1] = useState(0)
   const [num2, setNum2] = useState(0)
@@ -86,9 +87,12 @@ export default function DemoPage() {
           <h1>No hay nada</h1>
         </div>
       )}
+      <Text h2>useState</Text>
       <Counter></Counter>
       <Spacer></Spacer>
       <Usuario></Usuario>
+      <Text h2>useEFfect - useRef</Text>
+      <TimerPadre></TimerPadre>
     </div>
   )
 }
