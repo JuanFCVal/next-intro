@@ -8,6 +8,8 @@ import {
   PokemonShortResponse,
 } from '../../utils/getPokemonInfo'
 import Counter from '@/components/demo/Counter'
+import Usuario from '@/components/demo/Usuario'
+import { Spacer } from '@nextui-org/react'
 export default function DemoPage() {
   const [num1, setNum1] = useState(0)
   const [num2, setNum2] = useState(0)
@@ -85,6 +87,8 @@ export default function DemoPage() {
         </div>
       )}
       <Counter></Counter>
+      <Spacer></Spacer>
+      <Usuario></Usuario>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { Spacer } from '@nextui-org/react'
+import { Card, Spacer } from '@nextui-org/react'
 import { useState } from 'react'
 
 const Counter = () => {
@@ -10,13 +10,15 @@ const Counter = () => {
     setCounter(counter - 1)
   }
   return (
-    <div>
-      Counter: {counter} use state
-      <br />
-      <button onClick={() => addCounter(2)}>Sumar btt</button>
-      <Spacer></Spacer>
-      <button onClick={removeCounter}>Restar btt</button>
-    </div>
+    <Card>
+      <div>
+        Counter: {counter} use state
+        <br />
+        <button onClick={() => addCounter(2)}>Sumar btt</button>
+        <Spacer></Spacer>
+        <button onClick={removeCounter}>Restar btt</button>
+      </div>
+    </Card>
   )
 }
 
