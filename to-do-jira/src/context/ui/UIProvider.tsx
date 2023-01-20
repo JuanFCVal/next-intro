@@ -3,11 +3,13 @@ import { UIContext } from './UIContext'
 import { uiReducer } from './UIReducer'
 
 export interface UIState {
-  sidemenuOpen: boolean
+  sidemenuOpen: boolean,
+  isAdding: boolean
 }
 
 const UI_INITIAL_STATE: UIState = {
   sidemenuOpen: false,
+  isAdding: false
 }
 interface UIProviderProps {
   children: React.ReactNode
@@ -22,12 +24,21 @@ export const UIProvider: FC<UIProviderProps> = ({ children }) => {
   const closeSidebar = () => {
     dispatch({ type: 'UI- Close Sidebar'})
   }
+
+  const openAdding = () => {
+    dispatch({type: 'UI- Open Adding'})
+  }
+  const closeAdding = () => {
+    dispatch({type: 'UI- Close Adding'})
+  }
   return (
     <UIContext.Provider
       value={{
         ...state,
         openSidebar,
-        closeSidebar
+        closeSidebar,
+        openAdding,
+        closeAdding
       }}
     >
       {children}

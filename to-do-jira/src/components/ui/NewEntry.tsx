@@ -3,18 +3,18 @@ import React, { useContext, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import SaveIcon from '@mui/icons-material/Save';
 import { EntriesContext } from '@/context/entries';
+import { UIContext } from '../../context/ui/UIContext';
 const NewEntry = () => {
-  const [showForm, setshowForm] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [touched, setTouched] = useState(false)
   const { addNewEntry } = useContext(EntriesContext)
+  const {openAdding, closeAdding, isAdding} = useContext(UIContext)
 
-  const handleShowForm = (value: boolean) => {
-    setshowForm(value)
-  }
 
   const onSave = () => {
     addNewEntry(textValue)
+    setTextValue("")
+    setTouched(false)
   }
 
   return (
@@ -25,7 +25,7 @@ const NewEntry = () => {
       }}
     >
 
-      {showForm ? (
+      {isAdding ? (
         <>
           <TextField
             fullWidth
@@ -33,6 +33,7 @@ const NewEntry = () => {
             placeholder='Nueva entrada'
             error={textValue.length === 0 && touched}
             onChange={(e) => setTextValue(e.target.value)}
+            value={textValue}
             onBlur={() => setTouched(true)}
           >
             {' '}
@@ -43,7 +44,7 @@ const NewEntry = () => {
               variant='outlined'
               color='error'
               endIcon={<AddIcon></AddIcon>}
-              onClick={ () => handleShowForm(false)}
+              onClick={ closeAdding} 
             >
               Cancelar
             </Button>
@@ -66,7 +67,7 @@ const NewEntry = () => {
         color='info'
         fullWidth
         endIcon={<AddIcon></AddIcon>}
-        onClick={ () => handleShowForm(true)}
+        onClick={ openAdding }
       >
         Agregar
       </Button>
