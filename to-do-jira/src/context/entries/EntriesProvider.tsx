@@ -1,4 +1,4 @@
-import { Entry } from '@/interfaces'
+import { Entry, Status } from '@/interfaces'
 import {v4 as uuidv4} from 'uuid'
 import { FC, useReducer } from 'react'
 import { entriesReducer,  } from '.'
@@ -61,11 +61,21 @@ export const EntriesProvider: FC<EntriesProviderProps> = ({ children }) => {
       payload: entry,
     })
   }
+
+  const updateEntryStatus = (entry: Entry) => {
+    dispatch(
+      {
+        type: 'Entries - Update Status',
+        payload: entry
+      }
+    )
+  }
   return (
     <EntriesContext.Provider
       value={{
         ...state,
         addNewEntry,
+        updateEntryStatus
       }}
     >
       {children}

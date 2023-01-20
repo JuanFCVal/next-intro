@@ -8,15 +8,23 @@ interface Props{
     status: Status
 }
 const EntryList: FC<Props> = ( {status} ) => {
-    const { isDragging } = useContext(UIContext)
-    const { entries } = useContext(EntriesContext)
+    const { isDragging, setDragging } = useContext(UIContext)
+    const { entries, updateEntryStatus } = useContext(EntriesContext)
     const filteredEntries: Entry[] = useMemo(() =>     entries.filter(
         (entry) => entry.status === status
     ), [entries, status])
 
     const onDropEntry = (event: DragEvent) => {
         const id = event.dataTransfer.getData("text")
-        console.log({id})
+        let entry = entries.find(
+            (entry) => {
+                return entry.id === id
+            }
+        )
+        entry!.status = status
+        updateEntryStatus(entry!)
+        setDragging(false)
+
     }
 
     const allowDrop = (event: DragEvent) => {
