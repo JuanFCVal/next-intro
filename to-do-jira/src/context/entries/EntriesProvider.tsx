@@ -49,10 +49,23 @@ interface EntriesProviderProps {
 
 export const EntriesProvider: FC<EntriesProviderProps> = ({ children }) => {
   const [state, dispatch] = useReducer(entriesReducer, Entries_INITIAL_STATE)
+  const addNewEntry = (description: string) => {
+    const entry: Entry = {
+      id: uuidv4(),
+      description,
+      status: 'pending',
+      name: 'Name 5',
+    }
+    dispatch({
+      type: 'Entries - Add Entry',
+      payload: entry,
+    })
+  }
   return (
     <EntriesContext.Provider
       value={{
         ...state,
+        addNewEntry,
       }}
     >
       {children}
