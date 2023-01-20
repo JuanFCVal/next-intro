@@ -1,18 +1,23 @@
 import { Entry } from '@/interfaces';
 import { Card, CardActionArea, CardActions, CardContent, Typography } from '@mui/material';
-import React, { DragEvent, FC } from 'react'
+import React, { DragEvent, FC, useContext } from 'react'
+import { UIContext } from '../../context/ui/UIContext';
 interface Props{
     entry : Entry
 }
 
 
 const EntryCard: FC<Props> = ({entry}) => {
-    const onDragStart = (event: DragEvent ) => {
-        
+    const { setDragging } = useContext(UIContext)
+    const onDragStart = (event: DragEvent ) => { 
         event.dataTransfer.setData('text', entry.id)
+        console.log("SEteo drag a true")
+        setDragging(true)
     }
     const onDragEnd = ( ) => {
-       
+        setDragging(false)
+        console.log("SEteo drag a false")
+
     }
   return (
     <Card sx={{ marginBottom: 1, padding: '10px' }} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}> 

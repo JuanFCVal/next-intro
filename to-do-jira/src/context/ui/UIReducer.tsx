@@ -1,6 +1,7 @@
 import { UIState } from './UIProvider'
 
 type UIActionType = { type: 'UI- Open Sidebar' } | { type: 'UI- Close Sidebar' } | { type: 'UI- Open Adding' } | { type: 'UI- Close Adding' }
+| {type: 'UI - SET DRAG', payload: boolean}
 export const uiReducer = (state: UIState, action: UIActionType): UIState => {
   switch (action.type) {
     case 'UI- Open Sidebar':
@@ -22,6 +23,11 @@ export const uiReducer = (state: UIState, action: UIActionType): UIState => {
       return {
         ...state,
         isAdding: false,
+      }
+    case 'UI - SET DRAG':
+      return {
+        ...state,
+        isDragging: action.payload
       }
     default:
       return state

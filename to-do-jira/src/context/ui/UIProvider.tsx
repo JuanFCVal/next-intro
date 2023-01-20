@@ -4,12 +4,14 @@ import { uiReducer } from './UIReducer'
 
 export interface UIState {
   sidemenuOpen: boolean,
-  isAdding: boolean
+  isAdding: boolean,
+  isDragging: boolean;
 }
 
 const UI_INITIAL_STATE: UIState = {
   sidemenuOpen: false,
-  isAdding: false
+  isAdding: false,
+  isDragging: false
 }
 interface UIProviderProps {
   children: React.ReactNode
@@ -31,6 +33,9 @@ export const UIProvider: FC<UIProviderProps> = ({ children }) => {
   const closeAdding = () => {
     dispatch({type: 'UI- Close Adding'})
   }
+  const setDragging = (isDrag: boolean) => {
+    dispatch({type: 'UI - SET DRAG', payload: isDrag})
+  }
   return (
     <UIContext.Provider
       value={{
@@ -38,7 +43,8 @@ export const UIProvider: FC<UIProviderProps> = ({ children }) => {
         openSidebar,
         closeSidebar,
         openAdding,
-        closeAdding
+        closeAdding,
+        setDragging
       }}
     >
       {children}
