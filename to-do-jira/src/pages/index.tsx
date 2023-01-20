@@ -18,7 +18,7 @@ const HomePage: NextPage = () => {
               ></CardHeader>
               <CardContent>
               <NewEntry></NewEntry>
-                <EntryList status='Finished'></EntryList>
+                <EntryList status='pending'></EntryList>
               </CardContent>
             </Card>
           </Grid>
@@ -41,7 +41,7 @@ const HomePage: NextPage = () => {
                 sx={{ textAlign: 'center' }}
               ></CardHeader>
               <CardContent>
-                <EntryList status='pending'></EntryList>
+                <EntryList status='Finished'></EntryList>
               </CardContent>
             </Card>
           </Grid>

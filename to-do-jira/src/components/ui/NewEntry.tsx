@@ -1,17 +1,20 @@
 import { Box, Button, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import AddIcon from '@mui/icons-material/Add'
 import SaveIcon from '@mui/icons-material/Save';
+import { EntriesContext } from '@/context/entries';
 const NewEntry = () => {
   const [showForm, setshowForm] = useState(false)
   const [textValue, setTextValue] = useState("")
   const [touched, setTouched] = useState(false)
+  const { addNewEntry } = useContext(EntriesContext)
+
   const handleShowForm = (value: boolean) => {
     setshowForm(value)
   }
 
   const onSave = () => {
- 
+    addNewEntry(textValue)
   }
 
   return (
