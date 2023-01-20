@@ -25,7 +25,7 @@ const EntryList: FC<Props> = ( {status} ) => {
     }
   return (
     <div   onDragOver={allowDrop}  onDrop={onDropEntry}>
-        <Paper sx= {{height: 'calc(100vh )', backgroundColor: isDragging ? ' transparent': 'info', padding: "2px 10px"}}>
+        <Paper sx= {{height: 'calc(100vh )', backgroundColor: isDragging ? ' transparent': 'info', padding: "2px 10px", transition: 'all .5s'}}>
             <List sx= {{opacity: 1}}>
                 {
                     filteredEntries.map(

@@ -8,7 +8,7 @@ interface Props{
 
 
 const EntryCard: FC<Props> = ({entry}) => {
-    const { setDragging } = useContext(UIContext)
+    const { setDragging, isDragging } = useContext(UIContext)
     const onDragStart = (event: DragEvent ) => { 
         event.dataTransfer.setData('text', entry.id)
         console.log("SEteo drag a true")
@@ -20,7 +20,7 @@ const EntryCard: FC<Props> = ({entry}) => {
 
     }
   return (
-    <Card sx={{ marginBottom: 1, padding: '10px' }} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}> 
+    <Card sx={{ opacity: isDragging ? '0.5 ': '1', marginBottom: 1, padding: '10px' }} draggable onDragStart={onDragStart} onDragEnd={onDragEnd}> 
         <CardActionArea>
             <CardContent>
             <Typography sx= {{whiteSpace:'pre-line'}}>
