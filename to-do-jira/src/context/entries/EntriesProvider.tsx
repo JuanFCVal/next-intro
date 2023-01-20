@@ -13,19 +13,31 @@ const Entries_INITIAL_STATE: EntriesState = {
   entries: [
     {
       id: uuidv4(),
-      description: 'Description 1',
+      description: 'Mollit id culpa consequat pariatur duis sit.',
       status: 'pending',
       name: 'Name 1',
     },
     {
       id: uuidv4(),
-      description: 'Description 1',
+      description: 'Sint culpa officia nulla irure.',
       status: 'In progress',
       name: 'Name 3',
     },
     {
       id: uuidv4(),
-      description: 'Description 1',
+      description: 'Excepteur reprehenderit et cupidatat non consectetur minim laboris eu sunt ipsum sint voluptate.',
+      status: 'Finished',
+      name: 'Name 3',
+    },
+    {
+      id: uuidv4(),
+      description: 'Tempor fugiat mollit nostrud occaecat ut velit esse.',
+      status: 'Finished',
+      name: 'Name 3',
+    },
+    {
+      id: uuidv4(),
+      description: 'Ullamco fugiat ea veniam cillum anim ut enim dolore cillum non cupidatat pariatur voluptate voluptate.',
       status: 'Finished',
       name: 'Name 3',
     }
